@@ -1,0 +1,5 @@
+# Ignored directories
+.vscode
+.cache
+build
+
