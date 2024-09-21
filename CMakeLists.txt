@@ -18,4 +18,4 @@ endif ()
 
 add_subdirectory(common)
 
-
+add_subdirectory(t01_string)
