@@ -2,7 +2,7 @@
 
 The first task pack is about string routines.
 
-### 1. std::println for char arrays
+### 1. [DONE] std::println for char arrays
 
 The task is to find info about how std::println should process char arrays (according to C++23 standard).
 
@@ -34,7 +34,7 @@ basic_format_arg constructor stores static_cast<const char_type*>(input) to inte
 
 __Conclusion: char arrays are treated as C-style strings by std::print and std::println.__
 
-### 2. testqual
+### 2. [DONE] testqual
 
 The task is to read [conv.qual] section of C++23 standard and implement char-related types casts checker. Checked types will contain `const`, `char`, `[]` or `*` only.
 
@@ -43,6 +43,8 @@ E.g:
 ```C++
 testqual("const char **", "char **"); // -> false
 ```
+
+Quick and dirty solution `include/ms/testqual.hpp`
 
 ### 3. operator== for std::basic_string
 

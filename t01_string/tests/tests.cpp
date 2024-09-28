@@ -3,6 +3,7 @@
 #include <cstring>
 
 #include <ms/string.hpp>
+#include <ms/testqual.hpp>
 
 using namespace std::literals::string_view_literals;
 
@@ -52,4 +53,41 @@ TEST(MsString, CowStringSubStr) {
 
     const auto *found = std::strstr(snp().data(), "find_me");
     ASSERT_STREQ(found, "find_meamsl_ck");
+}
+
+// Test inputs preprocessing and simple conversions
+TEST(MsString, Testqual_Basic) {
+    static_assert(std::is_convertible_v<const char *, const char*>);
+    ASSERT_TRUE(ms::testqual("const char *", "char const*"));
+
+    static_assert(std::is_convertible_v<const char **, const char**>);
+    ASSERT_TRUE(ms::testqual("char const ** ", "const char* *"));
+}
+
+// [conv.qual] Note 1
+TEST(MsString, Testqual_CharPP_to_ConstCharPP) {
+    static_assert(!std::is_convertible_v<char **, const char**>);
+    ASSERT_FALSE(ms::testqual("char **", "const char **"));
+
+    static_assert(std::is_convertible_v<char **, const char* const*>);
+    ASSERT_TRUE(ms::testqual("char **", "const char *const *"));
+}
+
+TEST(MsString, TestqualArrays) {
+    // Array to ptr is OK
+    static_assert(std::is_convertible_v<char[], char*>);
+    ASSERT_TRUE(ms::testqual("char []", "char *"));
+
+    static_assert(std::is_convertible_v<char*[], char**>);
+    ASSERT_TRUE(ms::testqual("char*[]", "char**"));
+
+    // Smth to array is not OK
+    static_assert(!std::is_convertible_v<char [], char[]>);
+    ASSERT_FALSE(ms::testqual("char []", "char []"));
+
+    static_assert(!std::is_convertible_v<char *[], char *const[]>);
+    ASSERT_FALSE(ms::testqual("char *[]", "char *const[]"));
+
+    static_assert(!std::is_convertible_v<char(*)[], char**>);
+    // Round brackets are not supported
 }
