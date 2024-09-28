@@ -8,13 +8,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra")
 
-# Find Google test
-find_package(GTest QUIET)
-if (NOT GTest_FOUND)
-  message(WARNING "Google test package not found. Tests will not be build")
-else()
-  enable_testing()
-endif ()
+# Add CPM
+include(cmake/CPM.cmake)
+
+# Add third party
+include(cmake/third_party.cmake)
+
+enable_testing()
 
 add_subdirectory(common)
 
