@@ -1,5 +1,5 @@
-#ifndef MS_STRING_HPP
-#define MS_STRING_HPP
+#ifndef COW_HPP
+#define COW_HPP
 
 #include <algorithm>
 #include <memory>
@@ -198,4 +198,4 @@ CowString<CharT, Traits> operator+(std::basic_string_view<CharT, Traits> lhs,
 
 } // namespace ms
 
-#endif // #ifndef MS_STRING_HPP
+#endif // COW_HPP

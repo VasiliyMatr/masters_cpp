@@ -46,9 +46,16 @@ testqual("const char **", "char **"); // -> false
 
 Quick and dirty solution `include/ms/testqual.hpp`
 
-### 3. operator== for std::basic_string
+### 3. [DONE] operator== for std::basic_string
 
 The task is to implement operator== for std::basic_string.
+
+Implementation details:
+- Operators should be moved out of class for `"abcdef" == str` to work.
+- It only makes sense to compare strings with the same CharT and Traits
+- Different allocators should not affect comparison. Thus Allocator_1 and Allocator_2 parameters are introduced in the operator template.
+
+Solution `include/ms/string_eq.hpp`
 
 ### 4. [DONE] COW string
 

@@ -5,7 +5,7 @@
 #include <sstream>
 #include <vector>
 
-#include <ms/string.hpp>
+#include <ms/cow.hpp>
 
 namespace ms {
 
