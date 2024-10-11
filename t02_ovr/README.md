@@ -105,6 +105,6 @@ Viable candidates: `X::operator Bar` (\*) and `X::operator Baz` (\*\*).
 
 6) [over.ics.rank] (12.2.4.3)
 
-(3.2.3) Implicit conversion of (\*) is better that that of (\*\*)
+(3.2.1) Implicit conversion sequence of (\*) is a proper subsequence of (\*\*) implicit conversion sequence (the second one will include qualification conversion).
 
 __"Bar\n" will be printed__
